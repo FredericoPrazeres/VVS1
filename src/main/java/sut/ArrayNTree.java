@@ -298,19 +298,25 @@ public class ArrayNTree<T extends Comparable<T>> implements NTree<T> {
 
 		if (one == other) /* L3, B3 */
 			return true;  /* L4 */
-				
+/*
+		if(one.isEmpty() && other.isEmpty()){
+			return true;
+		}
+*/
+
 		if (one != null && other != null) { /* L5, B4 */
 			Iterator<T> it1 = one.iterator(); /* L6 */
 			Iterator<T> it2 = other.iterator(); /* L7 */
 			
 			while(it1.hasNext() && it2.hasNext()) /* L8, B5 */
+
 				if(!it1.next().equals(it2.next())) /* L9, B6*/
 					return false; /* L10 */
 			
 			if(!it1.hasNext() && !it2.hasNext()) /* L11, B7*/
 				return true; /* L12 */
 		}
-		
+
 		return false; /* L13 */
 	}
 	
@@ -387,7 +393,7 @@ public class ArrayNTree<T extends Comparable<T>> implements NTree<T> {
 		public boolean hasNext() {
 			return !stack.isEmpty();
 		}
-	
+
 		/**
 		 * Returns the next element
 		 * @return - next element
