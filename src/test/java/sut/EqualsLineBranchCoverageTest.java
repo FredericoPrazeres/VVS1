@@ -15,9 +15,10 @@ public class EqualsLineBranchCoverageTest {
 
         // T1
 
-        List<Integer> listNull = null;
-        List<Integer> listNull2 = null;
-        assertEquals(listNull,listNull2);
+        ArrayNTree<Integer> nTree= null;
+        ArrayNTree<Integer> nTree2 = null;
+        assertTrue(nTree2.equals(nTree));
+        assertTrue(nTree.equals(nTree2));
 
 
     }
@@ -29,7 +30,8 @@ public class EqualsLineBranchCoverageTest {
         ArrayNTree<Integer> nTree= new ArrayNTree<>(list,3);
         ArrayNTree<Integer> nTree2 = new ArrayNTree<>(list2,2);
 
-        assertNotEquals(nTree, nTree2);
+        assertFalse(nTree2.equals(nTree));
+        assertFalse(nTree.equals(nTree2));
 
 
     }
@@ -41,8 +43,8 @@ public class EqualsLineBranchCoverageTest {
         List<Integer> list3 = Arrays.asList(1, 2, 3);
         ArrayNTree<Integer> nTree3 = new ArrayNTree<>(list3,3);
 
-        assertEquals(nTree2,nTree3);
-
+        assertTrue(nTree2.equals(nTree3));
+        assertTrue(nTree3.equals(nTree2));
     }
     @Test
     public void equalsLineBranchTest4(){
@@ -50,8 +52,9 @@ public class EqualsLineBranchCoverageTest {
         ArrayNTree<Integer> nTree4 = new ArrayNTree<>(3);
         ArrayNTree<Integer> nTree5 = new ArrayNTree<>(3);
 
-        assertEquals(nTree4,nTree5); //NPE
-
+        //NPE
+        assertTrue(nTree4.equals(nTree5));
+        assertTrue(nTree5.equals(nTree4));
     }
 
     @Test
@@ -60,6 +63,7 @@ public class EqualsLineBranchCoverageTest {
         List<Integer> list3 = Arrays.asList(1, 2, 3);
         ArrayNTree<Integer> nTree3 = new ArrayNTree<>(list3,3);
         assertNotEquals(nTree3,null);
+
 
     }
     @Test
