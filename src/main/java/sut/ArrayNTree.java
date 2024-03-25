@@ -150,35 +150,7 @@ public class ArrayNTree<T extends Comparable<T>> implements NTree<T> {
 		return children[position].data.compareTo(elem)==0 || children[position].contains(elem);
 	}
 
-	// pre: nChildren>0
-	// propose a position to insert/search element
-	// returns the index of the largest of all the values < elem
-	// if the element is the smallest, it returns -1
-	private int proposePosition(T elem) {
-		int index = 0; //L8
-		for(int i=0; i<capacity; i++) { //L9 B4
-			//System.out.println("Entrei aqui B4");
-			if (children[i] == null || children[i].data.compareTo(elem)==0) { //L10 B5
-				// found an empty slot or the element, return current index
-				//System.out.println("Entrei aqui B5");
-				break; //L11
-			}
-			if (children[i].data.compareTo(elem)>0) { // L12 B6
-				// element should not be place here or ahead, go back one position, and end search
-				index--; // L13
-				//System.out.println("Entrei aqui B6");
-				break; // L14
-			}
-			if (children[i].data.compareTo(elem)<0){  // L15 B7
-				// this child is still smaller, check next one
-				index++; // L16
-				//System.out.println("Entrei aqui B7");
-			}
 
-		}
-		//System.out.println("L17");
-		return index; // L17
-	}
 
     /////////////////////////////////////
 
@@ -228,7 +200,7 @@ public class ArrayNTree<T extends Comparable<T>> implements NTree<T> {
 			// than all children of N) but we must shift all those on the right
 			insertAt(elem, position+1);
 		}
-		
+
 		else if (nChildren==capacity || elem.compareTo(children[position].max())<0) {
 			// if the node's capacity is full, and elem is larger than all children
 			// place it below the last child
@@ -276,6 +248,36 @@ public class ArrayNTree<T extends Comparable<T>> implements NTree<T> {
 		compact(children);		
 	}
 
+	// pre: nChildren>0
+	// propose a position to insert/search element
+	// returns the index of the largest of all the values < elem
+	// if the element is the smallest, it returns -1
+	private int proposePosition(T elem) {
+		int index = 0; //L8
+		for(int i=0; i<capacity; i++) { //L9 B4
+			//System.out.println("Entrei aqui B4");
+			if (children[i] == null || children[i].data.compareTo(elem)==0) { //L10 B5
+				// found an empty slot or the element, return current index
+				//System.out.println("Entrei aqui B5");
+				break; //L11
+			}
+			if (children[i].data.compareTo(elem)>0) { // L12 B6
+				// element should not be place here or ahead, go back one position, and end search
+				index--; // L13
+				//System.out.println("Entrei aqui B6");
+				break; // L14
+			}
+			if (children[i].data.compareTo(elem)<0){  // L15 B7
+				// this child is still smaller, check next one
+				index++; // L16
+				//System.out.println("Entrei aqui B7");
+			}
+
+		}
+		//System.out.println("L17");
+		return index; // L17
+	}
+
     /////////////////////////////////////
 
 	// find an eventual single empty tree, and shift all next elements to the left
@@ -319,19 +321,20 @@ public class ArrayNTree<T extends Comparable<T>> implements NTree<T> {
 		if (one == other) /* L3, B3 */
 			return true;  /* L4 */
 
-		/*
+
 		if(one.isEmpty() && other.isEmpty()){
 			return true;
 		} //POSSIVEL MELHORIA
-		*/
 
-		if (one != null && other != null) { /* L5, B4 */
+
+		if (one != null && other != null && !other.isEmpty() && !one.isEmpty()) { /* L5, B4 */
 			Iterator<T> it1 = one.iterator(); /* L6 */
 			Iterator<T> it2 = other.iterator(); /* L7 */
 			
 			while(it1.hasNext() && it2.hasNext()) /* L8, B5 */
 
 				if(!it1.next().equals(it2.next())){ /* L9, B6*/
+					System.out.println("ENTREI AQUI");
 					return false;} /* L10 */
 
 			if(!it1.hasNext() && !it2.hasNext()) /* L11, B7*/

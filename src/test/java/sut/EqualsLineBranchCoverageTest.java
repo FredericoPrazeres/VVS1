@@ -17,6 +17,7 @@ public class EqualsLineBranchCoverageTest {
 
         ArrayNTree<Integer> nTree= null;
         ArrayNTree<Integer> nTree2 = null;
+        //NPE
         assertTrue(nTree2.equals(nTree));
         assertTrue(nTree.equals(nTree2));
 
