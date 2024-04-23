@@ -18,26 +18,27 @@ import static org.junit.Assume.assumeTrue;
 public class TreeQuickCheckTest {
 
     @Property(trials = 20)
-    public void propertyShufflingDoesNotBreakInvariants(@From(RandomTreeGenerator.class) ArrayNTree<Integer> tree) {
+    public void testShufflingDoesNotBreakInvariants(@From(RandomTreeGenerator.class) ArrayNTree<Integer> tree) {
         List<Integer> shuffled = tree.toList();
         Collections.shuffle(shuffled);
         ArrayNTree<Integer> shuffledTree = new ArrayNTree<>(shuffled, 3);
         assertEquals(tree.size(), shuffledTree.size());
-        assertEquals(tree.height(), shuffledTree.height());
         assertEquals(tree, shuffledTree);
+        assertEquals(tree.height(), shuffledTree.height());
         assertEquals(tree.countLeaves(), shuffledTree.countLeaves());
+
 
 
     }
 
     @Property(trials = 20)
-    public void propertyRemoveAllElementsTreeIsEmpty(@From(RandomTreeGenerator.class) ArrayNTree<Integer> tree) {
+    public void testRemoveAllElementsTreeIsEmpty(@From(RandomTreeGenerator.class) ArrayNTree<Integer> tree) {
         tree.toList().forEach(tree::delete);
         assertTrue(tree.isEmpty());
     }
 
     @Property(trials = 20)
-    public void propertyInsertingThenRemovingSameElementDoesNotModifyOtherElements(@From(RandomTreeGenerator.class) ArrayNTree<Integer> tree) {
+    public void testInsertingThenRemovingSameElementDoesNotModifyOtherElements(@From(RandomTreeGenerator.class) ArrayNTree<Integer> tree) {
 
         ArrayNTree<Integer> clonedTree = tree.clone();
         int  el = 1004;
@@ -47,14 +48,14 @@ public class TreeQuickCheckTest {
     }
 
     @Property(trials = 20)
-    public void propertyInsertingAllElementsAgainProducesNoEffect(@From(RandomTreeGenerator.class) ArrayNTree<Integer> tree) {
+    public void testInsertingAllElementsAgainProducesNoEffect(@From(RandomTreeGenerator.class) ArrayNTree<Integer> tree) {
         ArrayNTree<Integer> clonedTree = tree.clone();
         tree.toList().forEach(clonedTree::insert);
         assertEquals(tree, clonedTree);
     }
 
     @Property(trials = 20)
-    public void propertyInsertingAnElementAlreadyThereSeveralTimesOverProducesNoEffect(
+    public void testInsertingAnElementAlreadyThereSeveralTimesOverProducesNoEffect(
             @From(RandomTreeGenerator.class) ArrayNTree<Integer> tree, @From(RandomTreeGenerator.class) ArrayNTree<Integer> t) {
 
         ArrayNTree<Integer> newTree = tree.clone();
