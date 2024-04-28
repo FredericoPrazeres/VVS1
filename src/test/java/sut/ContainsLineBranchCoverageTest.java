@@ -28,7 +28,6 @@ public class ContainsLineBranchCoverageTest {
         ArrayNTree<Integer> nTree3 = new ArrayNTree<>(list,3);
 
         System.out.println(nTree3);
-        System.out.println("Teste começou");
 
         assertTrue(nTree3.contains(1));
 
@@ -40,7 +39,6 @@ public class ContainsLineBranchCoverageTest {
         List<Integer> list = Collections.singletonList(1);
         ArrayNTree<Integer> nTree3 = new ArrayNTree<>(list,3);
         System.out.println(nTree3);
-        System.out.println("Teste começou");
 
         assertFalse(nTree3.contains(2));
 
@@ -52,7 +50,6 @@ public class ContainsLineBranchCoverageTest {
         List<Integer> list = Arrays.asList(1, 2, 3,49,12,34,55,77,13,67);
         ArrayNTree<Integer> nTree3 = new ArrayNTree<>(list,2);
         System.out.println(nTree3);
-        System.out.println("Teste começou");
 
         assertTrue(nTree3.contains(34));
 
@@ -64,7 +61,6 @@ public class ContainsLineBranchCoverageTest {
         List<Integer> list = Arrays.asList(1, 2, 3,49,12,34,55,77,13,67);
         ArrayNTree<Integer> nTree3 = new ArrayNTree<>(list,3);
         System.out.println(nTree3);
-        System.out.println("Teste começou");
 
         assertFalse(nTree3.contains(78));
 
@@ -77,7 +73,6 @@ public class ContainsLineBranchCoverageTest {
         List<Integer> list = Arrays.asList(1, 2, 34,55,77,13,67);
         ArrayNTree<Integer> nTree3 = new ArrayNTree<>(list,3);
         System.out.println(nTree3);
-        System.out.println("Teste começou");
 
         assertThrows(NullPointerException.class, () -> nTree3.contains(null));
 

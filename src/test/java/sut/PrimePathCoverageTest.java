@@ -41,8 +41,6 @@ public class PrimePathCoverageTest {
     @Test
     public void primePathCoverageTest3(){
 
-        List<Integer> list = Collections.emptyList();
-        List<Integer> list2 = Collections.emptyList();
         ArrayNTree<Integer> nTree= new ArrayNTree<>(3);
         ArrayNTree<Integer> nTree2 = new ArrayNTree<>(3);
 
